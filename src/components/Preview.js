@@ -11,14 +11,26 @@ export default class Preview extends Component {
 
 
     render() {
+        
         return (
             <div className = "col-md-8"  >
                 <h3>Output</h3>
-                <div className = "p-3" style = { { border : "2px solid black "}} >
-                    <BasicInfoDisplay />
-                    <EducationDisplay />
-                    <SkillsDisplay />
-                    <WorkDisplay />
+                <div className = "container-fluid p-3" style = { { border : "2px solid black "}} >
+                    <div className="row">
+                        <BasicInfoDisplay
+                        info = {this.props.info }
+                        />
+                        <EducationDisplay 
+                            education = { this.props.education }
+                        />
+                    </div>
+                    <div className="row">
+                        <SkillsDisplay
+                        skills = { this.props.skills } />
+                        <WorkDisplay
+                            work = { this.props.work }
+                        />
+                    </div>
                 </div>
             </div>
         );

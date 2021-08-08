@@ -1,0 +1,51 @@
+/* 
+* {
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+label {
+    width: 50%;
+}
+
+.MainContent {
+    display: flex;
+    background-color: red;
+}
+
+@media screen and ( max-width : 650px) {
+    .MainContent {
+        flex-direction: column;
+    }
+} */
+
+.FormsContainer {
+    overflow-y: auto;
+    height: 86vh;
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f2f2f2;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: blue;
+  }
+
+.myListItem{
+    display: flex;
+}
+
+.myListItemButton {
+    margin-left: auto;
+}
+
+.navbar h4 {
+    margin: auto !important;
+}

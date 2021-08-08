@@ -1,0 +1,12 @@
+/* 
+
+
+@media screen and ( min-width : 650px) {
+    .FormsContainer {
+        width: 50%;
+        background-color: green;
+        display: flex;
+        flex-direction: column ;
+        height: 500px;
+    }
+} */
