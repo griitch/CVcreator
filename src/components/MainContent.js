@@ -12,12 +12,17 @@ export default class MainContent extends Component {
     this.addWork = this.addWork.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.addSkill = this.addSkill.bind(this);
+    this.removeSkill = this.removeSkill.bind(this);
+    this.removeEducation = this.removeEducation.bind(this);
+    this.removeWork = this.removeWork.bind(this);
+
     this.state = {
       infos: {
         firstName: "",
         lastName: "",
-        dateOfBirth: "",
         address: "",
+        email: "",
+        phone: ""
       },
       education: [],
       skills: [],
@@ -30,8 +35,9 @@ export default class MainContent extends Component {
       infos: {
         firstName: info.firstName,
         lastName: info.lastName,
-        dateOfBirth: info.dateOfBirth,
+        email: info.email,
         address: info.dateOfBirth,
+        phone: info.phone
       },
     });
   }
@@ -50,6 +56,8 @@ export default class MainContent extends Component {
     
   }
   addSkill( skill ) {
+    if(this.state.skills.includes(skill))
+      return;
     this.setState( prevState => {
       return {
       skills : [...prevState.skills,skill] 
@@ -57,19 +65,46 @@ export default class MainContent extends Component {
     
   }
 
+  removeSkill( skill ) {
+    this.setState( prevState => {
+      return {
+      skills : prevState.skills.filter(( s ) => s !== skill )
+    }})
+  }
+
+  removeEducation( degree ) {
+    this.setState( prevState => {
+      return {
+      education : prevState.education.filter(( edu ) => edu.degree !== degree )
+    }})
+  }
+
+  removeWork( id ) {
+    console.log(this.state.work)
+    console.log(id)
+    this.setState( prevState => {
+      return {
+        work : prevState.work.filter(( work ) => work.id != id )
+    }})
+  }
+
   render() {
     return (
-      <div className=" mt-5 container">
+      <div className=" mt-4 container">
         <div className="row">
           <FormsContainer
             onInfoChange = { this.updateInfos }
+
             onEducationAdd = { this.addEducation }
             education = { this.state.education }
+            removeEducation = { this.removeEducation }
 
             onSkillsAdd = { this.addSkill }
             skills = { this.state.skills }
+            removeSkill = { this.removeSkill }
 
             onWorkAdd = { this.addWork }
+            removeWork = { this.removeWork }
             work = { this.state.work }
           />
           <Preview 

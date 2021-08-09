@@ -5,8 +5,16 @@ import React from "react";
 import uniqid from 'uniqid';
 
 export default class SkillsList extends Component {
+    constructor(props) {
+        super(props);
+        this.removeSkill = this.removeSkill.bind(this);
+    }
 
-    
+    removeSkill( e ) {
+       this.props.removeSkill(e.target.dataset.skillname)
+    }
+
+   
     render() {
     
         return (    
@@ -14,8 +22,9 @@ export default class SkillsList extends Component {
              <h5>Skills : </h5>
             { this.props.skills.map(
                 skill => <li key = {uniqid()} className="list-group-item myListItem ">{skill}
-                    <button  className='btn btn-sm btn-danger me-1 myListItemButton' >remove</button>
-                    <button  className='btn btn-sm btn-secondary' >edit</button>
+                    <button data-skillname = {skill}
+                      onClick = { this.removeSkill }
+                      className='btn btn-sm btn-danger me-1 myListItemButton' >remove</button>
                 </li>
             )}
         </ul>

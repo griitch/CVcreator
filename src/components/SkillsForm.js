@@ -17,7 +17,11 @@ export default class SkillsForm extends Component {
 
     toggleFormActive() {
         this.setState( prevState => {
-            return { isActive : !prevState.isActive }
+            return { isActive : !prevState.isActive,
+                degree : '',
+                from: '',
+                date: ''
+            }
         })
     }
 

@@ -8,10 +8,9 @@ import WorkForm from "./WorkForm";
 import WorkList from "./WorkList";
  import EducationList from "./EducationList";
 import SkillsList from './SkillsList';
-//import '../styles/FormsContainer.css'
 
 export default class FormsContainer extends Component {
-  
+
   render() {
     
     return (
@@ -19,20 +18,26 @@ export default class FormsContainer extends Component {
         <BasicInfoForm  onInfoChange = { this.props.onInfoChange }  />
 
         <EducationList
-        education = {this.props.education } />
+          removeEducation = { this.props.removeEducation }
+          education = {this.props.education }
+        />
 
         <EducationForm
           onEducationAdd = { this.props.onEducationAdd }
         />
 
         <SkillsList
-          skills = { this.props.skills }
+        removeSkill = { this.props.removeSkill }
+        skills = { this.props.skills }
         />
+
         <SkillsForm 
           onSkillsAdd = { this.props.onSkillsAdd }
         />
+
         <WorkList
           work = { this.props.work }
+          removeWork = { this.props.removeWork }
         />
         <WorkForm 
           onWorkAdd = { this.props.onWorkAdd }

@@ -5,6 +5,14 @@ import uniqid from 'uniqid';
 
 export default class EducationList extends Component {
 
+    constructor(props) {
+        super(props);
+        this.removeEducation = this.removeEducation.bind(this);
+    }
+
+    removeEducation( e ) {
+       this.props.removeEducation(e.target.dataset.degree);
+    }
     
 
     
@@ -16,8 +24,10 @@ export default class EducationList extends Component {
             {
                 this.props.education.map(
                 deg => <li key = {uniqid()} className="list-group-item myListItem ">{deg.degree}
-                    <button  className='btn btn-sm btn-danger me-1 myListItemButton' >remove</button>
-                    <button  className='btn btn-sm btn-secondary' >edit</button>
+                    <button
+                    data-degree = {deg.degree}
+                    onClick = { this.removeEducation }
+                    className='btn btn-sm btn-danger me-1 myListItemButton' >remove</button>
                 </li>
             )}
         </ul>

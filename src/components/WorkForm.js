@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Component } from "react";
 import React from "react";
+import uniqid from 'uniqid';
 
 export default class WorkForm extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class WorkForm extends Component {
        role : '',
        from : '',
        to : '', 
+       
     };
     this.toggleFormActive = this.toggleFormActive.bind(this);
     this.updateRole = this.updateRole.bind(this);
@@ -21,10 +23,15 @@ export default class WorkForm extends Component {
   }
 
   toggleFormActive() {
-    this.setState((prevState) => {
-      return { isActive: !prevState.isActive };
-    });
-  }
+    this.setState( prevState => {
+        return { isActive : !prevState.isActive,
+          companyName : '',
+          role : '',
+          from : '',
+          to : '', 
+        }
+    })
+}
 
   updateRole( e ) {
     this.setState({
@@ -53,7 +60,8 @@ export default class WorkForm extends Component {
   addWork( e ) {
     e.preventDefault();
     const { companyName, role, from, to } = this.state;
-    this.props.onWorkAdd({ companyName, role, from, to });
+    const id = uniqid();
+    this.props.onWorkAdd({ companyName, role, from, to, id });
   }
 
 
@@ -93,7 +101,7 @@ export default class WorkForm extends Component {
             <label>to : </label>
             <input 
             onChange = { this.updateTo }
-            value = { this.state.to }
+            value = { this.state.to || this.state.from }
             className="form-control" type="date" /> 
 
             <div className="d-grid gap-2 col-6 mx-auto">

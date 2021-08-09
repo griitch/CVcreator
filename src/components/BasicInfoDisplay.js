@@ -8,10 +8,10 @@ export default class BasicInfoDisplay extends Component {
 
         return (
             <div className = 'col-6 mb-2'>
-                first name : { this.props.info.firstName} <br />
-                lastname : { this.props.info.lastName } <br/>
-                date of birth : { this.props.info.dateOfBirth } <br />
-                address : { this.props.info.address }
+                <h4>Personnal information :</h4>
+                Email : { this.props.info.email} <br />
+                phone : { this.props.info.phone } <br/>
+                Address : { this.props.info.address }
             </div>
         )
     }

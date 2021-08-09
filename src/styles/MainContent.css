@@ -1,29 +1,8 @@
-/* 
-* {
-    margin: 0%;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-label {
-    width: 50%;
-}
-
-.MainContent {
-    display: flex;
-    background-color: red;
-}
-
-@media screen and ( max-width : 650px) {
-    .MainContent {
-        flex-direction: column;
-    }
-} */
 
 .FormsContainer {
     overflow-y: auto;
-    height: 86vh;
-    padding: 1rem;
+    height: 89vh;
+    padding: 1rem 1rem 0;
     border: 1px solid black;
 }
 

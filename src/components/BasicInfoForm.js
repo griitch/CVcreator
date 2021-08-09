@@ -8,14 +8,16 @@ export default class FormsContainer extends Component {
     this.liftInfoState = this.liftInfoState.bind(this);
     this.updateFirstName = this.updateFirstName.bind(this);
     this.updateLastName = this.updateLastName.bind(this);
-    this.updateDateOfBirth = this.updateDateOfBirth.bind(this);
+    this.updateEmail = this.updateEmail.bind(this);
     this.updateAddress = this.updateAddress.bind(this);
+    this.updatePhone = this.updatePhone.bind(this);
 
     this.state = {
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
+      email: "",
       address: "",
+      phone: "",
     };
   }
 
@@ -36,9 +38,9 @@ export default class FormsContainer extends Component {
     });
   }
 
-  updateDateOfBirth(e) {
+  updateEmail(e) {
     this.setState({
-      dateOfBirth: e.target.value,
+      email: e.target.value,
     });
   }
 
@@ -48,11 +50,15 @@ export default class FormsContainer extends Component {
     });
   }
 
+  updatePhone(e) {
+    this.setState({
+      phone: e.target.value,
+    });
+  }
   render() {
     return (
       <form onSubmit={this.liftInfoState}>
-        <fieldset>
-          <legend>Enter your basic infos : </legend>
+        
 
           <label className="form-label">first name </label>
           <input
@@ -70,12 +76,13 @@ export default class FormsContainer extends Component {
             type="text"
           />
 
-          <label className="form-label">date of birth</label>
+          <label className="form-label">Email</label>
           <input
-            value={this.state.dateOfBirth}
-            onChange={this.updateDateOfBirth}
+            value={this.state.email}
+            onChange={this.updateEmail}
             className="form-control"
-            type="date"
+            type="email"
+            placeholder = "xyz@foo.baz"
           />
 
           <label className="form-label">address</label>
@@ -86,10 +93,20 @@ export default class FormsContainer extends Component {
             type="text"
           />
 
+          <label className="form-label">phone: </label>
+          <input
+            value={this.state.phone}
+            onChange={this.updatePhone}
+            className="form-control mb-2"
+            pattern="[0-9]{10}"
+            placeholder = "123456789"
+            type="text"
+          />
+
           <button type="submit" className="btn btn-sm btn-success ">
             Save
           </button>
-        </fieldset>
+   
         <hr />
       </form>
     );

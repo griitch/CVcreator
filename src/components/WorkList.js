@@ -1,10 +1,20 @@
 /* eslint-disable react/prop-types */
 import { Component } from "react";
 import React from "react";
-import uniqid from 'uniqid';
+//import uniqid from 'uniqid';
 import { capitalize } from "./App";
 
 export default class WorkList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.removeWork = this.removeWork.bind(this);
+    }
+
+
+    removeWork( e ) {
+        this.props.removeWork( e.target.dataset.workid )
+    }
     
     render() {
     
@@ -12,10 +22,12 @@ export default class WorkList extends Component {
         this.props.work.length > 0 && <ul className="list-group list-group mb-2">
             <h5>Work experience : </h5>
             { this.props.work.map(
-                work => <li key = {uniqid()} className="list-group-item myListItem ">
+                work => <li key = {work.id} className="list-group-item myListItem ">
                     {`${capitalize(work.role)} at ${capitalize(work.companyName)} `}
-                    <button  className='btn btn-sm  btn-danger me-1 myListItemButton' >remove</button>
-                    <button  className='btn btn-sm  btn-secondary' >edit</button>
+                    <button  
+                    data-workid = { work.id }
+                    onClick = { this.removeWork }
+                    className='btn btn-sm  btn-danger me-1 myListItemButton' >remove</button>
                 </li>
             )}
         </ul>
