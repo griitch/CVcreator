@@ -80,28 +80,28 @@ export default class WorkForm extends Component {
             <legend>Enter informations about the work experience :</legend>
 
             <label className="form-label">Role : </label>
-            <input
+            <input required
             onChange = { this.updateRole }
             value = { this.state.role }
             className="form-control" type="text"/>
 
             <label
             className="form-label">Company name : </label>
-            <input
+            <input required
              onChange = { this.updateCompany }
              value = { this.state.companyName }
             className="form-control" type="text" /> 
 
             <label className="form-label">worked from : </label>
-            <input 
+            <input  required
             onChange = { this.updateFrom }
             value = { this.state.from }
             className="form-control" type="date" /> 
 
             <label>to : </label>
-            <input 
+            <input  required
             onChange = { this.updateTo }
-            value = { this.state.to || this.state.from }
+            value = { this.state.to  }
             className="form-control" type="date" /> 
 
             <div className="d-grid gap-2 col-6 mx-auto">

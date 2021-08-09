@@ -43,12 +43,28 @@ export default class MainContent extends Component {
   }
 
   addEducation( edu ) {
+    for(let education of this.state.education)
+      if( education.degree === edu.degree &&
+          education.from === edu.from &&
+          education.date === edu.date 
+        ) return;
+
+
+
     this.setState( prevState => {
       return {
       education : [...prevState.education,edu] 
     }})
   }
   addWork( work ) {
+    for(let job of this.state.work)
+      if( job.companyName === work.companyName &&
+          job.role === work.role &&
+          job.to === work.to &&
+          job.from === work.from
+        ) return;
+
+
     this.setState( prevState => {
       return {
       work : [...prevState.work, work] 
@@ -72,16 +88,15 @@ export default class MainContent extends Component {
     }})
   }
 
-  removeEducation( degree ) {
+  removeEducation( id ) {
     this.setState( prevState => {
       return {
-      education : prevState.education.filter(( edu ) => edu.degree !== degree )
+      education : prevState.education.filter((edu ) => edu.id !== id )
     }})
   }
 
   removeWork( id ) {
-    console.log(this.state.work)
-    console.log(id)
+    
     this.setState( prevState => {
       return {
         work : prevState.work.filter(( work ) => work.id != id )

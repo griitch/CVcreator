@@ -3,6 +3,7 @@
 import { Component } from "react";
 import React from "react";
 import '../styles/MainContent.css';
+import uniqid from 'uniqid';
 
 export default class FormsContainer extends Component {
 
@@ -35,7 +36,8 @@ export default class FormsContainer extends Component {
     addEducation( e ) {
         e.preventDefault();
         const { degree, from, date } = this.state;
-        this.props.onEducationAdd( { degree, from, date } );
+        const id = uniqid();
+        this.props.onEducationAdd( { degree, from, date, id } );
     }
 
     updateDegree(e){

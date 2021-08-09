@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Component } from "react";
 import React from "react";
-import uniqid from 'uniqid';
+//import uniqid from 'uniqid';
 
 export default class EducationList extends Component {
 
@@ -11,7 +11,7 @@ export default class EducationList extends Component {
     }
 
     removeEducation( e ) {
-       this.props.removeEducation(e.target.dataset.degree);
+       this.props.removeEducation(e.target.dataset.id);
     }
     
 
@@ -23,9 +23,9 @@ export default class EducationList extends Component {
              <h5>Education : </h5>
             {
                 this.props.education.map(
-                deg => <li key = {uniqid()} className="list-group-item myListItem ">{deg.degree}
+                deg => <li key = {deg.id} className="list-group-item myListItem ">{deg.degree}
                     <button
-                    data-degree = {deg.degree}
+                    data-id = {deg.id}
                     onClick = { this.removeEducation }
                     className='btn btn-sm btn-danger me-1 myListItemButton' >remove</button>
                 </li>
