@@ -36,7 +36,7 @@ export default class MainContent extends Component {
         firstName: info.firstName,
         lastName: info.lastName,
         email: info.email,
-        address: info.dateOfBirth,
+        address: info.address,
         phone: info.phone
       },
     });
