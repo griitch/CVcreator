@@ -12,8 +12,8 @@ export default function FormsContainer(props) {
   const [tab, setTab] = useState("info");
 
   return (
-    <div className="FormsContainer col-md-5">
-      <div className="btn-group mb-3" role="group">
+    <div className="FormsContainer col-lg-4">
+      <div className="btn-group mb-3 d-flex" role="group">
         <button
           onClick={() => {
             setTab("info");
@@ -94,6 +94,7 @@ export default function FormsContainer(props) {
           <WorkForm onWorkAdd={props.onWorkAdd} />
         </>
       )}
+      <hr />
     </div>
   );
 }

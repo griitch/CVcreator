@@ -19,7 +19,6 @@ export default class SkillsList extends Component {
     
         return (    
             this.props.skills.length > 0 && <ul className="list-group list-group mb-2">
-             <h5>Skills : </h5>
             { this.props.skills.map(
                 skill => <li key = {uniqid()} className="list-group-item myListItem ">{skill}
                     <button data-skillname = {skill}

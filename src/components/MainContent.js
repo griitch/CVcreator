@@ -1,135 +1,77 @@
-/* eslint-disable react/prop-types */
-import { Component } from "react";
-import React from "react";
+import React, { useState } from "react";
 import FormsContainer from "./FormsContainer";
 import Preview from "./Preview";
 import "../styles/MainContent.css";
 
-export default class MainContent extends Component {
-  constructor(props) {
-    super(props);
-    this.updateInfos = this.updateInfos.bind(this);
-    this.addWork = this.addWork.bind(this);
-    this.addEducation = this.addEducation.bind(this);
-    this.addSkill = this.addSkill.bind(this);
-    this.removeSkill = this.removeSkill.bind(this);
-    this.removeEducation = this.removeEducation.bind(this);
-    this.removeWork = this.removeWork.bind(this);
+export default function MainContent() {
+  const [infos, setInfos] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    phone: "",
+  });
+  const [education, setEducation] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [work, setWork] = useState([]);
 
-    this.state = {
-      infos: {
-        firstName: "",
-        lastName: "",
-        address: "",
-        email: "",
-        phone: ""
-      },
-      education: [],
-      skills: [],
-      work: [],
-    };
-  }
-
-  updateInfos(info) {
-    this.setState({
-      infos: {
+const changeInfo = (info) => {
+    setInfos({
         firstName: info.firstName,
         lastName: info.lastName,
         email: info.email,
         address: info.address,
-        phone: info.phone
-      },
+        phone: info.phone,
     });
-  }
+};
 
-  addEducation( edu ) {
-    for(let education of this.state.education)
-      if( education.degree === edu.degree &&
-          education.from === edu.from &&
-          education.date === edu.date 
+const addEducation = edu => {
+    for(let educationInstance of education)
+    if( educationInstance.degree === edu.degree &&
+        educationInstance.from === edu.from &&
+        educationInstance.date === edu.date 
+    ) return;
+    setEducation([...education,edu]);
+};
+
+const addWork = workExperience => {
+    for(let job of work)
+        if( job.companyName === workExperience.companyName &&
+            job.role === workExperience.role &&
+            job.to === workExperience.to &&
+
+            job.from === work.from
         ) return;
 
+setWork( prev => [ ...prev, workExperience])
+}
+  
 
+  return (
+    <div className=" mt-4 container-fluid">
+      <div className="row">
+        <FormsContainer
+          onInfoChange={ changeInfo }
 
-    this.setState( prevState => {
-      return {
-      education : [...prevState.education,edu] 
-    }})
-  }
-  addWork( work ) {
-    for(let job of this.state.work)
-      if( job.companyName === work.companyName &&
-          job.role === work.role &&
-          job.to === work.to &&
-          job.from === work.from
-        ) return;
+          onEducationAdd={addEducation}
+          education={education}
+          removeEducation={ (id) => setEducation( prev =>  prev.filter((edu) => edu.id !== id )) }
 
+          onSkillsAdd={(skill) => !skills.includes(skill)  && setSkills( prev => [...prev, skill ])}
+          skills={skills}
+          removeSkill={(skill) => setSkills( prev => prev.filter( s => s !== skill ))}
 
-    this.setState( prevState => {
-      return {
-      work : [...prevState.work, work] 
-    }})
-    
-  }
-  addSkill( skill ) {
-    if(this.state.skills.includes(skill))
-      return;
-    this.setState( prevState => {
-      return {
-      skills : [...prevState.skills,skill] 
-    }})
-    
-  }
-
-  removeSkill( skill ) {
-    this.setState( prevState => {
-      return {
-      skills : prevState.skills.filter(( s ) => s !== skill )
-    }})
-  }
-
-  removeEducation( id ) {
-    this.setState( prevState => {
-      return {
-      education : prevState.education.filter((edu ) => edu.id !== id )
-    }})
-  }
-
-  removeWork( id ) {
-    
-    this.setState( prevState => {
-      return {
-        work : prevState.work.filter(( work ) => work.id != id )
-    }})
-  }
-
-  render() {
-    return (
-      <div className=" mt-4 container">
-        <div className="row">
-          <FormsContainer
-            onInfoChange = { this.updateInfos }
-
-            onEducationAdd = { this.addEducation }
-            education = { this.state.education }
-            removeEducation = { this.removeEducation }
-
-            onSkillsAdd = { this.addSkill }
-            skills = { this.state.skills }
-            removeSkill = { this.removeSkill }
-
-            onWorkAdd = { this.addWork }
-            removeWork = { this.removeWork }
-            work = { this.state.work }
-          />
-          <Preview 
-            info = {this.state.infos }
-            education = { this.state.education }
-            skills = { this.state.skills }
-            work = { this.state.work }
-          />
-        </div>
+          onWorkAdd={addWork}
+          work={work}
+          removeWork={id => setWork( prev => prev.filter( work => work.id !== id ))}
+        />
+        <Preview
+          info={infos}
+          education={education}
+          skills={skills}
+          work={work}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }

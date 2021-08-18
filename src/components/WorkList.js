@@ -20,7 +20,6 @@ export default class WorkList extends Component {
     
         return (    
         this.props.work.length > 0 && <ul className="list-group list-group mb-2">
-            <h5>Work experience : </h5>
             { this.props.work.map(
                 work => <li key = {work.id} className="list-group-item myListItem ">
                     {`${capitalize(work.role)} at ${capitalize(work.companyName)} `}

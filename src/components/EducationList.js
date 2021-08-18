@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Component } from "react";
 import React from "react";
-//import uniqid from 'uniqid';
 
 export default class EducationList extends Component {
 
@@ -20,7 +19,6 @@ export default class EducationList extends Component {
         
         return (    
             this.props.education.length > 0 && <ul className="list-group list-group mb-2">
-             <h5>Education : </h5>
             {
                 this.props.education.map(
                 deg => <li key = {deg.id} className="list-group-item myListItem ">{deg.degree}
