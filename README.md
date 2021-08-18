@@ -11,14 +11,14 @@ Built using React js and styled with bootstrap 5.
  
 
 ## Installation and setup 
-run on a terminal 
+On a machine with node installed, run on a terminal  
 `
 	npm install
-` to install the dependencies, 
-`
+` to install the dependencies,   
+`  
 npm run serve 
-` to start webpack local development server with auto-reloading at each save
-`
+` to start webpack local development server with auto-reloading at each save  
+`  
 npm run build
 ` to compile the optimized production ready files
 
@@ -27,3 +27,4 @@ npm run build
  - [ ] Display an error when the user tries to add a duplicate value
  - [ ] Make the output cv more good looking 
  - [ ] Implement an "edit" functionality 
+ - [ ] Add the possibilty of adding custom fields
