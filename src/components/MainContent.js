@@ -39,14 +39,13 @@ const addWork = workExperience => {
         if( job.companyName === workExperience.companyName &&
             job.role === workExperience.role &&
             job.to === workExperience.to &&
-
-            job.from === work.from
+            job.from === workExperience.from
         ) return;
 
 setWork( prev => [ ...prev, workExperience])
 }
-  
 
+  
   return (
     <div className=" mt-4 container-fluid">
       <div className="row">
